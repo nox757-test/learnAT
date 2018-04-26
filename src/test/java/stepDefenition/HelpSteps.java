@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class HelpSteps {
     WebDriver driver = InitialSteps.driver;
@@ -31,20 +32,23 @@ public class HelpSteps {
         click(By.xpath("//self::node()[text()='" + element + "']"));
     }
 
-    public void checkElement(String element) {
-        WebElement el = driver.findElement(By.xpath("//self::node()[text()='" + element + "']"));
-        isElementPresent(el, 30);
-        el.isDisplayed();
-        assertEquals(el.getText(), element);
+
+    public void checkVisibilityOfElement(String element){
+        checkVisibilityOfElement(By.xpath("//self::node()[text()='" + element + "']"));
     }
 
-    public void checkLogo(String logoTitle) {
-        WebElement el = driver.findElement(By.xpath("//self::node()[@title='" + logoTitle + "']"));
-        (new WebDriverWait(driver, 10)).until(ExpectedConditions.visibilityOf(el));
-        el.isDisplayed();
+    public void checkVisibilityOfElement(By locator){
+        assertTrue(presentOfElementLocated(locator, 20));
+        findElementLocated(driver.findElement(locator));
     }
 
-    public boolean isElementPresent(WebElement elementName, int timeout){
+
+    public void findElementLocated(WebElement element) {
+        assertTrue(isElementVisible(element, 10));
+    }
+
+
+    public boolean isElementVisible(WebElement elementName, int timeout){
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeout);
             wait.until(ExpectedConditions.visibilityOf(elementName));
@@ -53,4 +57,16 @@ public class HelpSteps {
             return false;
         }
     }
+
+    public boolean presentOfElementLocated(By locator, int timeout){
+        try {
+            WebDriverWait wait = new WebDriverWait(driver, timeout);
+            wait.until(ExpectedConditions.presenceOfElementLocated(locator));
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+
 }

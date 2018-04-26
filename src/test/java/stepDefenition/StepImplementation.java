@@ -23,8 +23,8 @@ public class StepImplementation extends HelpSteps{
 
 
     @Тогда("^открывается (?:страница с )?(?:модальное окно|формой|финансовой организацией|сообщением) \"([^\"]*)\"$")
-    public void waitOpenPage(String titleForm) throws Throwable {
-        checkElement(titleForm);
+    public void waitOpenPage(String text) throws Throwable {
+        checkVisibilityOfElement(text);
 
     }
 
@@ -44,7 +44,7 @@ public class StepImplementation extends HelpSteps{
 
     @Тогда("^откывается страница с логотипом \"([^\"]*)\"$")
     public void waitLogoPageAgent(String logoTitle) throws Throwable {
-        checkLogo(logoTitle);
+        checkVisibilityOfElement(By.xpath("//self::node()[@title='" + logoTitle + "']"));
 
     }
 
