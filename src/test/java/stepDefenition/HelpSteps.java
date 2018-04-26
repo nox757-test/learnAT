@@ -20,15 +20,15 @@ public class HelpSteps {
         element.sendKeys(value);
     }
 
-    public void fillInField(String field, String value){
+    public void fillInField(String field, String value) {
         WebElement element = driver.findElement(By.xpath(String.format("//input[@placeholder='%s']", field)));
-        if(element.getAttribute("placeholder").contains(field)) {
+        if (element.getAttribute("placeholder").contains(field)) {
             fillFieldValue(element, value);
         }
     }
 
 
-    public void click(By locator){
+    public void click(By locator) {
         new WebDriverWait(driver, 20)
                 .until(ExpectedConditions.and(ExpectedConditions.elementToBeClickable(locator)));
         driver.findElement(locator).click();
@@ -39,11 +39,11 @@ public class HelpSteps {
     }
 
 
-    public void checkVisibilityOfElement(String element){
+    public void checkVisibilityOfElement(String element) {
         checkVisibilityOfElement(By.xpath("//self::node()[text()='" + element + "']"));
     }
 
-    public void checkVisibilityOfElement(By locator){
+    public void checkVisibilityOfElement(By locator) {
         assertTrue(presentOfElementLocated(locator, 20));
         findElementLocated(driver.findElement(locator));
     }
@@ -54,7 +54,7 @@ public class HelpSteps {
     }
 
 
-    public boolean isElementVisible(WebElement elementName, int timeout){
+    public boolean isElementVisible(WebElement elementName, int timeout) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeout);
             wait.until(ExpectedConditions.visibilityOf(elementName));
@@ -64,7 +64,7 @@ public class HelpSteps {
         }
     }
 
-    public boolean presentOfElementLocated(By locator, int timeout){
+    public boolean presentOfElementLocated(By locator, int timeout) {
         try {
             WebDriverWait wait = new WebDriverWait(driver, timeout);
             wait.until(ExpectedConditions.presenceOfElementLocated(locator));

@@ -1,5 +1,7 @@
 package stepDefenition;
 
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
 import cucumber.api.java.ru.Дано;
 import cucumber.api.java.ru.Тогда;
 import org.openqa.selenium.WebDriver;
@@ -11,7 +13,7 @@ public class InitialSteps {
     static WebDriver driver;
 
     public static WebDriver getDriver() {
-        if(driver == null) {
+        if (driver == null) {
             System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.addArguments("start-maximized");
@@ -21,14 +23,16 @@ public class InitialSteps {
         return driver;
     }
 
-    @Дано("^открыт браузер и осуществлен переход по ссылке$")
+   @Before
+    //  @Дано("^открыт браузер и осуществлен переход по ссылке$")
     public void openBrowser() throws Throwable {
         driver = getDriver();
         driver.get("http://172.26.25.86:8081/sua/login");
 
     }
 
-    @Тогда("^браузер закрыт$")
+ @After
+    //  @Тогда("^браузер закрыт$")
     public void closeBrowser() throws Throwable {
         driver.quit();
         driver = null;

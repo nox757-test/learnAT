@@ -11,31 +11,24 @@ import java.util.List;
 
 public class StepImplementation extends HelpSteps{
 
-
-
     @Тогда("^открывается (?:страница с )?(?:модальное окно|формой|финансовой организацией|сообщением) \"([^\"]*)\"$")
     public void waitOpenPage(String text) throws Throwable {
         checkVisibilityOfElement(text);
-
     }
 
     @Когда("^пользователь (?:заполняет|вводит в) поле \"([^\"]*)\" значением \"([^\"]*)\"$")
     public void fillFieldValue(String field, String value) throws Throwable {
         fillInField(field, value);
-
     }
-
 
     @Тогда("^пользователь (?:нажимает|выбирает).* \"([^\"]*)\".*$")
     public void clickOnElement(String element) throws Throwable {
         clickElement(element);
     }
 
-
     @Тогда("^откывается страница с логотипом \"([^\"]*)\"$")
     public void waitLogoPageAgent(String logoTitle) throws Throwable {
         checkVisibilityOfElement(By.xpath("//self::node()[@title='" + logoTitle + "']"));
-
     }
 
     @Когда("^пользователь заполняет поля \"([^\"]*)\" и \"([^\"]*)\" значениями$")
