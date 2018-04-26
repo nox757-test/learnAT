@@ -1,22 +1,13 @@
 package stepDefenition;
 
 import cucumber.api.DataTable;
-import cucumber.api.PendingException;
 import cucumber.api.java.ru.*;
-import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static stepDefenition.InitialSteps.getDriver;
+
 
 public class StepImplementation extends HelpSteps{
 
@@ -29,11 +20,10 @@ public class StepImplementation extends HelpSteps{
     }
 
     @Когда("^пользователь (?:заполняет|вводит в) поле \"([^\"]*)\" значением \"([^\"]*)\"$")
-    public void fillField(String field, String data) throws Throwable {
-        enterData(field, data);
+    public void fillFieldValue(String field, String value) throws Throwable {
+        fillInField(field, value);
 
     }
-
 
 
     @Тогда("^пользователь (?:нажимает|выбирает).* \"([^\"]*)\".*$")
@@ -51,8 +41,8 @@ public class StepImplementation extends HelpSteps{
     @Когда("^пользователь заполняет поля \"([^\"]*)\" и \"([^\"]*)\" значениями$")
     public void fillLoginAndPassword(String field1, String field2, DataTable data) throws Throwable {
         List<String> list = data.asList(String.class);
-        enterData(field1, list.get(0));
-        enterData(field2, list.get(1));
+        fillInField(field1, list.get(0));
+        fillInField(field2, list.get(1));
     }
 
 }

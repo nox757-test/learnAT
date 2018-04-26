@@ -15,10 +15,16 @@ public class HelpSteps {
     WebDriver driver = InitialSteps.driver;
 
 
-    public void enterData(String placeholder, String data) {
-        WebElement el = driver.findElement(By.xpath(String.format("//input[@placeholder='%s']", placeholder)));
-        el.clear();
-        el.sendKeys(data);
+    public void fillFieldValue(WebElement element, String value) {
+        element.clear();
+        element.sendKeys(value);
+    }
+
+    public void fillInField(String field, String value){
+        WebElement element = driver.findElement(By.xpath(String.format("//input[@placeholder='%s']", field)));
+        if(element.getAttribute("placeholder").contains(field)) {
+            fillFieldValue(element, value);
+        }
     }
 
 
